@@ -1,0 +1,111 @@
+int PinBottomRight = 4;
+int PinBottom = 5;
+int PinBottomLeft = 6;
+int PinTopRight = 2;
+int PinTop = 3;
+int PinTopLeft = 8;
+int PinCenter = 7;
+
+int LOW = 0;
+int HIGH = 1;
+
+int one() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, LOW);
+    digitalWrite(PinBottomLeft, LOW);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, LOW);
+    digitalWrite(PinTopLeft, LOW);
+    digitalWrite(PinCenter, LOW);
+}
+
+int two() {
+    digitalWrite(PinBottomRight, LOW);
+    digitalWrite(PinBottom, HIGH);
+    digitalWrite(PinBottomLeft, HIGH);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, HIGH);
+    digitalWrite(PinTopLeft, LOW);
+    digitalWrite(PinCenter, HIGH);
+}
+
+int three() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, HIGH);
+    digitalWrite(PinBottomLeft, LOW);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, HIGH);
+    digitalWrite(PinTopLeft, LOW);
+    digitalWrite(PinCenter, HIGH);
+}
+
+int four() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, LOW);
+    digitalWrite(PinBottomLeft, LOW);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, LOW);
+    digitalWrite(PinTopLeft, HIGH);
+    digitalWrite(PinCenter, HIGH);
+}
+
+int five() {
+    digitalWrite(PinBottomRight, LOW);
+    digitalWrite(PinBottom, LOW);
+    digitalWrite(PinBottomLeft, LOW);
+    digitalWrite(PinTopRight, LOW);
+    digitalWrite(PinTop, LOW);
+    digitalWrite(PinTopLeft, LOW);
+    digitalWrite(PinCenter, LOW);
+}
+
+int six() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, HIGH);
+    digitalWrite(PinBottomLeft, HIGH);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, LOW);
+    digitalWrite(PinTopLeft, HIGH);
+    digitalWrite(PinCenter, HIGH);
+}
+
+int seven() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, LOW);
+    digitalWrite(PinBottomLeft, LOW);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, HIGH);
+    digitalWrite(PinTopLeft, LOW);
+    digitalWrite(PinCenter, LOW);
+}
+
+int eight() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, HIGH);
+    digitalWrite(PinBottomLeft, HIGH);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, HIGH);
+    digitalWrite(PinTopLeft, HIGH);
+    digitalWrite(PinCenter, HIGH);
+}
+
+int nine() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, LOW);
+    digitalWrite(PinBottomLeft, LOW);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, HIGH);
+    digitalWrite(PinTopLeft, HIGH);
+    digitalWrite(PinCenter, HIGH);
+}
+
+int Zero() {
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, HIGH);
+    digitalWrite(PinBottomLeft, HIGH);
+    digitalWrite(PinTopRight, HIGH);
+    digitalWrite(PinTop, HIGH);
+    digitalWrite(PinTopLeft, HIGH);
+    digitalWrite(PinCenter, LOW);
+}
+
