@@ -1,3 +1,9 @@
+//if this doesnt work istg im done
+
+int Red = 13;
+int Yellow = 12;
+int Green = 11;
+
 int PinBottomRight = 4;
 int PinBottom = 5;
 int PinBottomLeft = 6;
@@ -6,10 +12,82 @@ int PinTop = 3;
 int PinTopLeft = 8;
 int PinCenter = 7;
 
-int LOW = 0;
-int HIGH = 1;
+int yo_delay = 1000;
 
-int one() {
+void setup()
+{
+    pinMode(PinBottomRight, OUTPUT);
+    pinMode(PinBottom, OUTPUT);
+    pinMode(PinBottomLeft, OUTPUT);
+    pinMode(PinTopRight, OUTPUT);
+    pinMode(PinTop, OUTPUT);
+    pinMode(PinTopLeft, OUTPUT);
+    pinMode(PinCenter, OUTPUT);
+
+    pinMode(Red, OUTPUT);
+    pinMode(Yellow, OUTPUT);
+    pinMode(Green, OUTPUT);
+}
+
+
+
+void loop()
+{
+    red(); //RED light
+
+
+    //count from NINE -> 0
+    nine();
+    eight();
+    seven();
+    six();
+    five();
+    four();
+    three();
+    two();
+    one();
+
+    green(); //GrEeEn
+
+    //count from NINE -> 0
+    nine();
+    eight();
+    seven();
+    six();
+    five();
+    four();
+    three();
+    two();
+    one();
+
+    yellow(); //Speed up cus its turnin red
+
+    //count from THREE -> 0
+    three();
+    two();
+    one();
+
+}
+
+int red(){
+    digitalWrite(Red, HIGH);
+    digitalWrite(Yellow, LOW);
+    digitalWrite(Green, LOW);
+}
+
+int yellow(){
+    digitalWrite(Red, LOW);
+    digitalWrite(Yellow, HIGH);
+    digitalWrite(Green, LOW);
+}
+
+int green(){
+    digitalWrite(Red, LOW);
+    digitalWrite(Yellow, LOW);
+    digitalWrite(Green, HIGH);
+}
+
+int one(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, LOW);
     digitalWrite(PinBottomLeft, LOW);
@@ -17,9 +95,10 @@ int one() {
     digitalWrite(PinTop, LOW);
     digitalWrite(PinTopLeft, LOW);
     digitalWrite(PinCenter, LOW);
+    delay(yo_delay);
 }
 
-int two() {
+int two(){
     digitalWrite(PinBottomRight, LOW);
     digitalWrite(PinBottom, HIGH);
     digitalWrite(PinBottomLeft, HIGH);
@@ -27,9 +106,10 @@ int two() {
     digitalWrite(PinTop, HIGH);
     digitalWrite(PinTopLeft, LOW);
     digitalWrite(PinCenter, HIGH);
+    delay(yo_delay);
 }
 
-int three() {
+int three(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, HIGH);
     digitalWrite(PinBottomLeft, LOW);
@@ -37,9 +117,10 @@ int three() {
     digitalWrite(PinTop, HIGH);
     digitalWrite(PinTopLeft, LOW);
     digitalWrite(PinCenter, HIGH);
+    delay(yo_delay);
 }
 
-int four() {
+int four(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, LOW);
     digitalWrite(PinBottomLeft, LOW);
@@ -47,29 +128,32 @@ int four() {
     digitalWrite(PinTop, LOW);
     digitalWrite(PinTopLeft, HIGH);
     digitalWrite(PinCenter, HIGH);
+    delay(yo_delay);
 }
 
-int five() {
-    digitalWrite(PinBottomRight, LOW);
-    digitalWrite(PinBottom, LOW);
+int five(){
+    digitalWrite(PinBottomRight, HIGH);
+    digitalWrite(PinBottom, HIGH);
     digitalWrite(PinBottomLeft, LOW);
     digitalWrite(PinTopRight, LOW);
-    digitalWrite(PinTop, LOW);
-    digitalWrite(PinTopLeft, LOW);
-    digitalWrite(PinCenter, LOW);
+    digitalWrite(PinTop, HIGH);
+    digitalWrite(PinTopLeft, HIGH);
+    digitalWrite(PinCenter, HIGH);
+    delay(yo_delay);
 }
 
-int six() {
+int six(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, HIGH);
     digitalWrite(PinBottomLeft, HIGH);
-    digitalWrite(PinTopRight, HIGH);
-    digitalWrite(PinTop, LOW);
+    digitalWrite(PinTopRight, LOW);
+    digitalWrite(PinTop, HIGH);
     digitalWrite(PinTopLeft, HIGH);
     digitalWrite(PinCenter, HIGH);
+    delay(yo_delay);
 }
 
-int seven() {
+int seven(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, LOW);
     digitalWrite(PinBottomLeft, LOW);
@@ -77,9 +161,10 @@ int seven() {
     digitalWrite(PinTop, HIGH);
     digitalWrite(PinTopLeft, LOW);
     digitalWrite(PinCenter, LOW);
+    delay(yo_delay);
 }
 
-int eight() {
+int eight(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, HIGH);
     digitalWrite(PinBottomLeft, HIGH);
@@ -87,9 +172,10 @@ int eight() {
     digitalWrite(PinTop, HIGH);
     digitalWrite(PinTopLeft, HIGH);
     digitalWrite(PinCenter, HIGH);
+    delay(yo_delay);
 }
 
-int nine() {
+int nine(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, LOW);
     digitalWrite(PinBottomLeft, LOW);
@@ -97,9 +183,10 @@ int nine() {
     digitalWrite(PinTop, HIGH);
     digitalWrite(PinTopLeft, HIGH);
     digitalWrite(PinCenter, HIGH);
+    delay(yo_delay);
 }
 
-int Zero() {
+int zero(){
     digitalWrite(PinBottomRight, HIGH);
     digitalWrite(PinBottom, HIGH);
     digitalWrite(PinBottomLeft, HIGH);
@@ -107,5 +194,5 @@ int Zero() {
     digitalWrite(PinTop, HIGH);
     digitalWrite(PinTopLeft, HIGH);
     digitalWrite(PinCenter, LOW);
+    delay(yo_delay);
 }
-
