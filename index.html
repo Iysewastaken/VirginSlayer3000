@@ -1,21 +1,36 @@
-//if this doesnt work istg im done
+const int ButtonRight = 2;
+const int ButtonCenter = 3;
+const int ButtonLeft = 4;
 
-int Red = 13;
-int Yellow = 12;
-int Green = 11;
+const int PinBottomRight = 7;
+const int PinBottom = 8;
+const int PinBottomLeft = 9;
+const int PinTopRight = 10;
+const int PinTop = 11;
+const int PinTopLeft = 12;
+const int PinCenter = 13;
 
-int PinBottomRight = 4;
-int PinBottom = 5;
-int PinBottomLeft = 6;
-int PinTopRight = 2;
-int PinTop = 3;
-int PinTopLeft = 8;
-int PinCenter = 7;
+int ButtonRight_State = 0;
+int ButtonCenter_State = 0;
+int ButtonLeft_State = 0;
 
+int Hold = 0;
+int Held = 0;
 int yo_delay = 1000;
+int number = 0;
+
+int first_number = 0;
+
+int operation = 0;
+const int plus = 1;
+const int minus = 0;
 
 void setup()
 {
+    pinMode(ButtonRight, INPUT);
+    pinMode(ButtonCenter, INPUT);
+    pinMode(ButtonLeft, INPUT);
+
     pinMode(PinBottomRight, OUTPUT);
     pinMode(PinBottom, OUTPUT);
     pinMode(PinBottomLeft, OUTPUT);
@@ -24,71 +39,167 @@ void setup()
     pinMode(PinTopLeft, OUTPUT);
     pinMode(PinCenter, OUTPUT);
 
-    pinMode(Red, OUTPUT);
-    pinMode(Yellow, OUTPUT);
-    pinMode(Green, OUTPUT);
+    Serial.begin(9600);
 }
-
-
 
 void loop()
 {
-    red(); //RED light
-
-
-    //count from NINE -> 0
-    nine();
-    eight();
-    seven();
-    six();
-    five();
-    four();
-    three();
-    two();
-    one();
-    zero();
-
-    green(); //GrEeEn
-
-    //count from NINE -> 0
-    nine();
-    eight();
-    seven();
-    six();
-    five();
-    four();
-    three();
-    two();
-    one();
-    zero();
-
-    yellow(); //Speed up cus its turnin red
-
-    //count from THREE -> 0
-    three();
-    two();
-    one();
-    zero();
-
+    readCenter();
+    readLeft();
+    readRight();
 }
 
-int red(){
-    digitalWrite(Red, HIGH);
-    digitalWrite(Yellow, LOW);
-    digitalWrite(Green, LOW);
+int readRight(){
+    ButtonRight_State = digitalRead(ButtonRight);
+    if (ButtonRight_State == HIGH){ 
+        while (ButtonRight_State == HIGH) {
+            delay(100); 
+            ButtonRight_State = digitalRead(ButtonRight);
+            Hold += 1;
+            if (Hold > 10){
+                Held = 1;
+            }
+        }
+        if (Held == 1) {
+            spin(); //Held
+            first_number = number;
+            operation = plus;
+            number = 0;
+            Serial.println(first_number);
+            Serial.println("^^ Plus");
+            
+        } else {
+            Serial.println("*Add*"); //Clicked once
+            number += 1;
+            displaynumber();
+            ButtonRight_State = digitalRead(ButtonRight);  
+        }
+        
+    } 
+    Hold = 0;
+    Held = 0;
 }
 
-int yellow(){
-    digitalWrite(Red, LOW);
-    digitalWrite(Yellow, HIGH);
-    digitalWrite(Green, LOW);
+int readLeft(){
+    ButtonLeft_State = digitalRead(ButtonLeft);
+    if (ButtonLeft_State == HIGH){ 
+        while (ButtonLeft_State == HIGH) {
+            delay(100); 
+            ButtonLeft_State = digitalRead(ButtonLeft);
+            Hold += 1;
+            if (Hold > 10){
+                Held = 1;
+            }
+        }
+        if (Held == 1) {
+            spin(); //Held
+            first_number = number;
+            operation = minus;
+            number = 0;
+            Serial.println(first_number);
+            Serial.println("^^ Minus");
+            
+        } else {
+            Serial.println("*Subtract*"); //Clicked once
+            number -= 1;
+            displaynumber();
+            ButtonLeft_State = digitalRead(ButtonLeft);  
+        }
+        
+    } 
+    Hold = 0;
+    Held = 0;
 }
 
-int green(){
-    digitalWrite(Red, LOW);
-    digitalWrite(Yellow, LOW);
-    digitalWrite(Green, HIGH);
+int readCenter(){
+    ButtonCenter_State = digitalRead(ButtonCenter);
+    if (ButtonCenter_State == HIGH){
+        Serial.println("Center");
+        while (ButtonCenter_State == HIGH) {
+            delay(100);
+            ButtonCenter_State = digitalRead(ButtonCenter);
+        }
+        if (first_number > 0) {
+            if (number > 0) {
+                if (operation == minus) {
+                    Serial.println(first_number);
+                    Serial.println("Minus");
+                    Serial.println(number);
+                    Serial.println("Equals");
+                    number = first_number - number;
+                    displaynumber(); 
+                    Serial.println(number);
+                } else {
+                    Serial.println(first_number);
+                    Serial.println("Plus");
+                    Serial.println(number);
+                    Serial.println("Equals");
+                    number = first_number + number;
+                    displaynumber(); 
+                    Serial.println(number);
+                }
+            } 
+        }
+    } 
 }
+
+int displaynumber(){
+    if (number == 1) {
+        one();
+    } else if (number == 2) {
+        two();
+    } else if (number == 3) {
+        three();
+    } else if (number == 4) {
+        four();
+    } else if (number == 5) {
+        five();
+    } else if (number == 6) {
+        six();
+    } else if (number == 7) {
+        seven();
+    } else if (number == 8) {
+        eight();
+    } else if (number == 9) {
+        nine();
+    } else {
+        
+        if (number < 0) {
+            number = 9;
+            nine();
+        } else {
+            number = 0;
+            zero();
+        }
+    } 
+}
+
+int spin(){
+    Hold = 0;
+    Serial.println("Spimn");
+    Serial.println(number);
+    digitalWrite(PinCenter, LOW);
+    digitalWrite(PinBottomRight, HIGH);
+    delay(50);
+    digitalWrite(PinBottomRight, LOW);
+    digitalWrite(PinTopRight, HIGH);
+    delay(50);
+    digitalWrite(PinTopRight, LOW);
+    digitalWrite(PinTop, HIGH);
+    delay(50);
+    digitalWrite(PinTop, LOW);
+    digitalWrite(PinTopLeft, HIGH);
+    delay(50);
+    digitalWrite(PinTopLeft, LOW);
+    digitalWrite(PinBottomLeft, HIGH);
+    delay(50);
+    digitalWrite(PinBottomLeft, LOW);
+    digitalWrite(PinBottom, HIGH);
+    delay(50);
+    digitalWrite(PinBottom, LOW);
+}
+
+//Segment library
 
 int one(){
     digitalWrite(PinBottomRight, HIGH);
