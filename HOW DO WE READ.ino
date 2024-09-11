@@ -3,6 +3,8 @@
 const int potPin = A1;
 int potVal = 0;
 
+const int analogOut = 3;
+
 int Red = 13;
 int Blue = 12;
 
@@ -16,14 +18,16 @@ void setup()
 
 void loop()
 {
-  gae();
-  
-	potVal = analogRead(potPin);
+  digitalWrite(analogOut, HIGH);
+  potVal = analogRead(potPin);
 	Serial.println(potVal);
+  digitalWrite(analogOut, 0);
+	
+  gae();
   if (potVal < 4) {
 	digitalWrite(Blue, 1);
     digitalWrite(Red, 0);
-  } else if (potVal > 1020){
+  } else if (potVal > 940){
 	digitalWrite(Blue, 0);
     digitalWrite(Red, 1);
   } else {
@@ -34,8 +38,9 @@ void loop()
 }
 
 void gae(){
-  
-  tone(A0,523,500); 
-	delay(450);
-  tone(A0,494,500); 
-  delay(450);}
+  tone(analogOut,523,500); 
+  delay(100);
+	delay(350);
+  tone(analogOut,494,500); 
+  delay(500);
+}
