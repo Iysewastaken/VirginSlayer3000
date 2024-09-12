@@ -1,5 +1,6 @@
-// C++ code
-//
+//weewoo copyright chuchu all rights reserved GPL license terms idfk
+//you can copy this all you want n sht 
+//made by me
 const int potPin = A1;
 int potVal = 0;
 
