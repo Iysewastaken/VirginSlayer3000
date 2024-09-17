@@ -3,6 +3,7 @@
 //made by me
 const int potPin = A1;
 int potVal = 0;
+int test;
 
 const int analogOut = 3;
 
@@ -11,7 +12,7 @@ int Blue = 12;
 
 void setup()
 {
-	
+	pinMode(analogOut, OUTPUT);
   pinMode(Red, OUTPUT);
   pinMode(Blue, OUTPUT);
 	Serial.begin(9600);
@@ -20,12 +21,23 @@ void setup()
 void loop()
 {
   digitalWrite(analogOut, HIGH);
+	delay(50);
+	
   potVal = analogRead(potPin);
-	Serial.println(potVal);
+  test = analogRead(A5);
+
+	//debug
+	Serial.println("test vv ");
+  Serial.println(test);
+  Serial.println("input vv");
+  Serial.println(potVal);
+
+	//debug
+
   digitalWrite(analogOut, 0);
 	
   gae();
-  if (potVal < 4) {
+  if (potVal < 3) {
 	digitalWrite(Blue, 1);
     digitalWrite(Red, 0);
   } else if (potVal > 940){
@@ -40,8 +52,7 @@ void loop()
 
 void gae(){
   tone(analogOut,523,500); 
-  delay(100);
-	delay(350);
-  tone(analogOut,494,500); 
+  delay(450);
+  tone(analogOut,494,450); 
   delay(500);
 }
