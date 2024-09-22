@@ -5,13 +5,11 @@
 #include <IRremote.h>
 
 int ligmaballs = 2;
-int yea;
 int output;
 
 int segmentPins[] = {4,5,6,7,8,9,10};
 
 //vv imported
-int counter = 0; //starting number
 const int numDigits = 10; //max digits
 
 const byte digits[numDigits][7] = {//sir's better library
