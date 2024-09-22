@@ -41,7 +41,7 @@ void setup()
 	//^^ Imported
 
   Serial.begin(9600);
-  IrReceiver.begin(ligmaballs, DISABLE_LED_FEEDBACK); // Start the receiver
+  IrReceiver.begin(ligmaballs); // Start the receiver
 }
 
 void loop() {
