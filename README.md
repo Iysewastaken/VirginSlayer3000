@@ -2,3 +2,5 @@
 
 Current Circuit:
 ![you cant do this if you're blind](https://github.com/Iysewastaken/VirginSlayer3000/blob/main/current_1.png)
+
+![you cant do this if you're blind](https://github.com/Iysewastaken/VirginSlayer3000/blob/main/current_2.png)
