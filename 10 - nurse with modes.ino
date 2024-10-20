@@ -2,7 +2,7 @@
 //you can copy this all you want n sht just be grateful i did this
 #include <Adafruit_LiquidCrystal.h>
 
-char *mode[] = {"needs water", "wants CR", "Heart Attack", "Cardiac Arrest", "SUS"}; 
+char *mode[] = {"needs water", "wants CR", "Heart Attacking", "Cardiac Arrestin", "is SUS"}; 
 int mode_number;
 int ouch; //<-- becomes 0 when pressed, if u cause a bug cuz u 
 		  //forgot this istg
@@ -85,7 +85,7 @@ void panic()
 	liquidussy.setCursor(0, 0);
 
 	
-	liquidussy.print("The patient is:");
+	liquidussy.print("Nurse!A patient:");
 
 	liquidussy.setCursor(0, 1);
 	liquidussy.print(mode[mode_number]);
@@ -106,7 +106,8 @@ void depanic()
 	liquidussy.print("ok na diay ");
 
 	liquidussy.setCursor(0, 1);
-	liquidussy.print("te. lamats");
+	liquidussy.print("'te. lamats");
+	delay(700);
 }
 
 void hehe() // when the imposter is sus
