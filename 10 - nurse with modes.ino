@@ -89,6 +89,8 @@ void panic()
 
 	liquidussy.setCursor(0, 1);
 	liquidussy.print(mode[mode_number]);
+	/* debug */ Serial.println("Mode rn:");
+	/* debug */ Serial.print(mode_number);
 
   if (mode_number > 3) {
 	hehe();
