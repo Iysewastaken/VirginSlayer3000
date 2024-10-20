@@ -111,12 +111,6 @@ void depanic()
 
 void hehe() // when the imposter is sus
 {
-	liquidussy.clear();
-
-	liquidussy.setCursor(0, 0);
-	liquidussy.print("When the imposter");
-	liquidussy.setCursor(0, 1);
-	liquidussy.print("is SUS");
 	
   tone(pzzpzz, 1046); 
   delay(250);
