@@ -1,6 +1,8 @@
 //weewoo copyright chuchu all rights reserved GPL license terms idfk
 //you can copy this all you want n sht just be grateful i did this
-#include <Adafruit_LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x20, 16, 2);
 
 char *mode[] = {"needs water", "wants CR", "Heart Attacking", "Cardiac Arrestin", "is SUS"}; 
 int mode_number;
@@ -10,28 +12,18 @@ const int pinnie = 13;
 const int pzzpzz = 12;
 int clock_down = 0;
 
-Adafruit_LiquidCrystal liquidussy(0);
-
 void setup()
 {
 	//ok i pull up, hop out at the aftah party
 	pinMode(13,INPUT_PULLUP);
-	
-	/* idfk what the 1st parameter is but the 2nd one */
-	// is for the rows
-  	liquidussy.begin(16, 2);
   
   	Serial.begin(9600);
 
-  	// makes the next text start appearing at the top left corner
-	// or is it right, im dyslexic asf
-	liquidussy.setCursor(0, 1);
-	//for some fkn reason, the first row corresponds to zero
-	//and the 2nd row is 1, i dont get it either. WHY!?
+	lcd.init();
+  	lcd.backlight();
   
   //the set backlight thing isnt in the docs but it makes it
 	//glow based on boolean
-  liquidussy.setBacklight(1);
 
 	pinMode(pzzpzz, OUTPUT);
 	
@@ -52,9 +44,9 @@ void loop()
 		 
 		ouch = digitalRead(pinnie);
 
-		liquidussy.setBacklight(1);
+		lcd.setBacklight(1);
 		delay(50);
-		 liquidussy.setBacklight(0);
+		 lcd.setBacklight(0);
 		delay(50);
   	}
 	noTone(pzzpzz);
@@ -67,7 +59,7 @@ void loop()
 	depanic();
 	mode_number = 0;
 	delay(100);
-	liquidussy.clear();
+	lcd.clear();
 	clock_down = 0;
   }
   
@@ -76,19 +68,19 @@ void loop()
 
 void panic()
 {
-	liquidussy.clear();
+	lcd.clear();
   if (clock_down > 0) {
 		mode_number += 1;
   }
 	
-	liquidussy.setBacklight(1);
-	liquidussy.setCursor(0, 0);
+	lcd.setBacklight(1);
+	lcd.setCursor(0, 0);
 
 	
-	liquidussy.print("Nurse!A patient:");
+	lcd.print("Nurse!A patient:");
 
-	liquidussy.setCursor(0, 1);
-	liquidussy.print(mode[mode_number]);
+	lcd.setCursor(0, 1);
+	lcd.print(mode[mode_number]);
 	/* debug */ Serial.println("Mode rn:");
 	/* debug */ Serial.print(mode_number);
 
@@ -100,15 +92,15 @@ void panic()
 
 void depanic()
 {
-	liquidussy.clear();
+	lcd.clear();
 	
 	
-	liquidussy.setBacklight(1);
-	liquidussy.setCursor(0, 0);
-	liquidussy.print("ok na diay ");
+	lcd.setBacklight(1);
+	lcd.setCursor(0, 0);
+	lcd.print("ok na diay ");
 
-	liquidussy.setCursor(0, 1);
-	liquidussy.print("'te. lamats");
+	lcd.setCursor(0, 1);
+	lcd.print("'te. lamats");
 	delay(700);
 }
 
@@ -117,96 +109,96 @@ void hehe() // when the imposter is sus
 	
   tone(pzzpzz, 1046); 
   delay(250);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1244); 
   delay(250); 
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1400); 
   delay(250); 
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1510); 
   delay(250);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1400); 
   delay(250);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1244); 
   delay(250); 
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1046); 
   delay(250); 
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   noTone(pzzpzz); 
   delay(500); 
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 932); 
   delay(125);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1174); 
   delay(125); 
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1046); 
   delay(250);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
 
   noTone(pzzpzz); 
   delay(500); 
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 780); 
   delay(250); 
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 525); 
   delay(250); 
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   noTone(pzzpzz); 
   delay(250);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   //secont part
   tone(pzzpzz, 1046); 
   delay(250);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1244); 
   delay(250); 
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1400); 
   delay(250); 
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1510); 
   delay(250);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1400); 
   delay(250);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1244); 
   delay(250);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1400); 
   delay(250);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   noTone(pzzpzz); 
   delay(750);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   //fast part
   tone(pzzpzz, 1510); 
   delay(125);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1400); 
   delay(125);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1244); 
   delay(125);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1510); 
   delay(125);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
   tone(pzzpzz, 1400); 
   delay(125);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
   tone(pzzpzz, 1244); 
   delay(125);
-  liquidussy.setBacklight(1);
+  lcd.setBacklight(1);
 
   tone(pzzpzz, 780, 100); 
   delay(110);
-  liquidussy.setBacklight(0);
+  lcd.setBacklight(0);
 }
