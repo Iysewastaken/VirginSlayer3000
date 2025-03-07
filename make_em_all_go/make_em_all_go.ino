@@ -1,4 +1,4 @@
-//Written By Nikodem Bartnik - https://github.com/NikodemBartnik/ArduinoTutorials/blob/master/28BYJ-48/28BYJ-48.ino
+//Written By Nikodem Bartnik - nikodembartnik.pl
 //Edited by Iyse - All rights reserved
 #define EXECUTE_BUTTON A1
 
@@ -43,7 +43,7 @@ pinMode(STEPPER_PIN_3_3, OUTPUT);
 pinMode(STEPPER_PIN_3_4, OUTPUT);
 
 
-pinMode(EXECUTE_BUTTON, INPUT);
+pinMode(EXECUTE_BUTTON, INPUT_PULLUP);
 
 
 Serial.begin(9600);
@@ -52,7 +52,7 @@ Serial.begin(9600);
 }
 
 void loop() {
-  delay(10);
+  delay(100);
  
   if (on_state == 1) {
     OneStep(false);
